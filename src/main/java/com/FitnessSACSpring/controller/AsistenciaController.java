@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.FitnessSACSpring.entity.Asistencia;
 import com.FitnessSACSpring.repository.AsistenciaRepository;
 
+/**
+ * Controlador de asistencias.
+ * Exposición de listados y navegación para asistencias.
+ */
 @Controller
 @RequestMapping("/asistencias")
 public class AsistenciaController {
@@ -16,6 +20,10 @@ public class AsistenciaController {
     @Autowired
     private AsistenciaRepository asistenciaRepository;
 
+    /**
+     * Lista todas las asistencias y renderiza la vista principal.
+     * GET "/asistencias/listar".
+     */
     @GetMapping("/listar")
     public String listarAsistencias(Model model) {
         List<Asistencia> listaAsistencias = asistenciaRepository.findAll();

@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.FitnessSACSpring.entity.Plan;
 import com.FitnessSACSpring.repository.PlanRepository;
 
+/**
+ * Controlador de planes.
+ * Gestiona la visualización de planes disponibles.
+ */
 @Controller
 @RequestMapping("/planes")
 public class PlanController {
@@ -16,6 +20,10 @@ public class PlanController {
     @Autowired
     private PlanRepository planRepository;
 
+    /**
+     * Lista todos los planes y renderiza la vista de listado.
+     * GET "/planes/listar".
+     */
     @GetMapping("/listar")
     public String listarPlanes(Model model) {
         List<Plan> listaPlanes = planRepository.findAll();
