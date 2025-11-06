@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Reserva - Formulario</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="bg-secondary text-white rounded p-4">
+        <h4 class="mb-3" th:text="${reserva.reservaId} == 0 ? 'Nueva Reserva' : 'Editar Reserva'"></h4>
+        <form th:action="@{/reservas/guardar}" th:object="${reserva}" method="post">
+            <input type="hidden" th:field="*{reservaId}"/>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha Reserva</label>
+                    <input type="datetime-local" class="form-control" th:field="*{fechaReserva}" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Usuario</label>
+                    <select class="form-select" name="usuarioId" required>
+                        <option value="" disabled th:selected="${reserva.usuario} == null">Seleccione un usuario</option>
+                        <option th:each="u : ${usuarios}" th:value="${u.usuarioId}" th:text="${u.nombre}"
+                                th:selected="${reserva.usuario} != null and ${u.usuarioId} == ${reserva.usuario.usuarioId}"></option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Sesión</label>
+                    <select class="form-select" name="sesionId" required>
+                        <option value="" disabled th:selected="${reserva.sesion} == null">Seleccione una sesión</option>
+                        <option th:each="s : ${sesiones}" th:value="${s.sesionId}" th:text="${s.titulo}"
+                                th:selected="${reserva.sesion} != null and ${s.sesionId} == ${reserva.sesion.sesionId}"></option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" th:field="*{estado}" required>
+                        <option value="" disabled th:selected="${reserva.estado} == null">Seleccione un estado</option>
+                        <option value="ACTIVA" th:selected="${reserva.estado} == 'ACTIVA'">Activa</option>
+                        <option value="CANCELADA" th:selected="${reserva.estado} == 'CANCELADA'">Cancelada</option>
+                        <option value="FINALIZADA" th:selected="${reserva.estado} == 'FINALIZADA'">Finalizada</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha Cancelación</label>
+                    <input type="datetime-local" class="form-control" th:field="*{fechaCancelacion}" />
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a class="btn btn-outline-light" th:href="@{/reservas/listar}">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
