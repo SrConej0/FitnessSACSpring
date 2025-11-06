@@ -1,0 +1,50 @@
+# Spring Boot
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Eclipse/STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.metadata/
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/nbactions.xml
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# Maven Wrapper (opcional - puedes excluir estos)
+mvnw
+mvnw.cmd
+.mvn/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# OS específicos
+.DS_Store
+Thumbs.db
